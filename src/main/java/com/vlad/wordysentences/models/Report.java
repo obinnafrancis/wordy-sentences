@@ -1,6 +1,6 @@
-package com.vlad.wordysentences;
+package com.vlad.wordysentences.models;
 
-import com.vlad.wordysentences.exceptions.utils.Utils;
+import com.vlad.wordysentences.utils.Utils;
 
 public class Report {
     private int wordsCount;

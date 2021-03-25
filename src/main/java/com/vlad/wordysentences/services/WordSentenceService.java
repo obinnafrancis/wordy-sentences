@@ -1,13 +1,14 @@
-package com.vlad.wordysentences;
+package com.vlad.wordysentences.services;
 
+import com.vlad.wordysentences.models.Report;
 import com.vlad.wordysentences.exceptions.WordOnlyValidationException;
-import com.vlad.wordysentences.exceptions.utils.Utils;
+import com.vlad.wordysentences.utils.Utils;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class BusinessLogicService {
+public class WordSentenceService {
     Collection<String> collection;
 
 
