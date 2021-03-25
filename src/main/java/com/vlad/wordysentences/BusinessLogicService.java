@@ -1,35 +1,41 @@
 package com.vlad.wordysentences;
 
 import com.vlad.wordysentences.exceptions.WordOnlyValidationException;
+import com.vlad.wordysentences.exceptions.utils.Utils;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class BusinessLogicService {
     Collection<String> collection;
-    Map<String,String> response = new HashMap<>();
 
-    public Map<String, String> processData(String wordText, String sentenceText) {
 
+    public Report processData(String wordText, String sentenceText) {
+        Report response = new Report();
         try {
+            baseValidation(wordText,sentenceText);
             getCollection(sentenceText);
             validateWordArgument(wordText);
             validateSentenceArgument(sentenceText);
-            response = validProcessing(wordText,sentenceText);
+            response = validProcessing(wordText,response);
         }catch (WordOnlyValidationException e){
-            response.put("Response",e.getMessage());
+            response.setErrorMessage(e.getMessage());
         }
         return response;
     }
 
-    private Map<String, String> validProcessing(String word,String sentenceText) {
-        Map<String,String> response = new HashMap<>();
-        response.put("wordsCount",String.valueOf(collection.size()));
-        response.put("vowelsConsonantCount",getVowelsAndConsonantsInWord(word));
-        response.put("largestWordLength",String.valueOf(getLargestWordLength()));
-        response.put("smallestWordLength",String.valueOf(getSmallestWordLength()));
+    private void baseValidation(String wordText, String sentenceText) {
+        if(Utils.isNullOrEmpty(wordText) || Utils.isNullOrEmpty(sentenceText)){
+            throw new WordOnlyValidationException("Arguments should not be empty");
+        }
+    }
+
+    private Report validProcessing(String word,Report response) {
+        response.setWordsCount(collection.size());
+        response.setVowelsConsonantsCount(getVowelsAndConsonantsInWord(word));
+        response.setLargestWordLength(getLargestWordLength());
+        response.setSmallestWordLength(getSmallestWordLength());
         return response;
     }
 
@@ -54,7 +60,6 @@ public class BusinessLogicService {
 
     public void reset(){
         collection = new ArrayList<>();
-        response = new HashMap<>();
     }
 
 
