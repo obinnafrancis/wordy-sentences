@@ -1,10 +1,13 @@
 package com.vlad.wordysentences.views;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 @Route("")
 public class BaseUi extends VerticalLayout {
@@ -54,7 +57,11 @@ public class BaseUi extends VerticalLayout {
                 "iv.  Lengths of the smallest word in SENTENCE");
         questionOne.getStyle().set("display","block");
         questionOne.getStyle().set("text-align","justify");
-        leftDiv.add(questionOneHeader,questionOne);
+        NativeButton v1 = new NativeButton("View"); // process inputs
+        v1.addClickListener(buttonClickEvent -> {
+            v1.getUI().ifPresent(ui -> ui.navigate("solution1"));
+        });
+        leftDiv.add(questionOneHeader,questionOne,v1);
 
 
         Div rightDiv = new Div();
@@ -74,7 +81,11 @@ public class BaseUi extends VerticalLayout {
                 "Kindly build the system architecture as minimum details are given.");
         questionTwo.getStyle().set("display","block");
         questionTwo.getStyle().set("text-align","justify");
-        rightDiv.add(questionTwoHeader,questionTwo);
+        NativeButton v2 = new NativeButton("View"); // process inputs
+        v2.addClickListener(buttonClickEvent -> {
+            v2.getUI().ifPresent(ui -> ui.navigate("solution2"));
+        });
+        rightDiv.add(questionTwoHeader,questionTwo,v2);
 
         view.add(leftDiv,rightDiv);
         add(view);

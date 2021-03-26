@@ -1,6 +1,6 @@
 package com.vlad.wordysentences.models;
 
-import com.vlad.wordysentences.utils.Utils;
+import com.vlad.wordysentences.services.Utils;
 
 public class Report {
     private int wordsCount;

@@ -2,7 +2,6 @@ package com.vlad.wordysentences.services;
 
 import com.vlad.wordysentences.models.Report;
 import com.vlad.wordysentences.exceptions.WordOnlyValidationException;
-import com.vlad.wordysentences.utils.Utils;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
